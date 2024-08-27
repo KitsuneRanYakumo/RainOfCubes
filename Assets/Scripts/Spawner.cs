@@ -3,21 +3,21 @@ using UnityEngine.Pool;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _prefabCube;
+    [SerializeField] private Cube _prefabCube;
     [SerializeField, Min(-4)] private float _minForPointSpawn = -4;
     [SerializeField, Range(-4, 4)] private float _maxForPointSpawn = 4;
     [SerializeField, Min(1)] private int _poolCapacity;
     [SerializeField, Min(1)] private int _poolMaxSize;
 
-    private ObjectPool<GameObject> _poolCubes;
+    private ObjectPool<Cube> _poolCubes;
 
     private void Awake()
     {
-        _poolCubes = new ObjectPool<GameObject>(
-            createFunc: () => CreateFunc(),
-            actionOnGet: (cube) => ActionOnGet(cube),
-            actionOnRelease: (cube) => ActionOnRelease(cube),
-            actionOnDestroy: (cube) => Destroy(cube.gameObject),
+        _poolCubes = new ObjectPool<Cube>(
+            createFunc: CreateCubeForPool,
+            actionOnGet: GetFromPool,
+            actionOnRelease: ReleaseInPool,
+            actionOnDestroy: Destroy,
             collectionCheck: true,
             defaultCapacity: _poolCapacity,
             maxSize: _poolMaxSize);
@@ -44,29 +44,28 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public void TakeCube(GameObject cube)
+    public void TakeCube(Cube cube)
     {
         _poolCubes.Release(cube);
     }
 
-    private GameObject CreateFunc()
+    private Cube CreateCubeForPool()
     {
-        GameObject cube = Instantiate(_prefabCube);
-        cube.GetComponent<Cube>().SetSpawner(gameObject.GetComponent<Spawner>());
+        Cube cube = Instantiate(_prefabCube);
+        cube.SetSpawner(this);
         return cube;
     }
 
-    private void ActionOnGet(GameObject cube)
+    private void GetFromPool(Cube cube)
     {
         cube.transform.position = GetPointSpawn();
-        cube.SetActive(true);
+        cube.gameObject.SetActive(true);
     }
 
-    private void ActionOnRelease(GameObject cube)
+    private void ReleaseInPool(Cube cube)
     {
-        cube.GetComponent<Cube>().Reset();
-        cube.transform.rotation = Quaternion.identity;
-        cube.SetActive(false);
+        cube.Reset();
+        cube.gameObject.SetActive(false);
     }
 
     private Vector3 GetPointSpawn()

@@ -5,20 +5,26 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    [SerializeField] private Color _color;
+    [SerializeField] private Color _inputColor;
     [SerializeField] private int _minLifetime = 2;
     [SerializeField] private int _maxLifetime = 5;
 
-    private Spawner _spawnerWithPool;
+    private Renderer _renderer;
     private bool _isTouchPlatform;
     private int _lifeTime;
     private WaitForSecondsRealtime _wait;
+    private Spawner _spawnerWithPool;
 
     public bool IsTouchPlatform => _isTouchPlatform;
 
     public void Reset()
     {
         Start();
+    }
+
+    private void Awake()
+    {
+        _renderer = GetComponent<Renderer>();
     }
 
     private void Start()
@@ -42,12 +48,13 @@ public class Cube : MonoBehaviour
     public void ChangeColor()
     {
         _isTouchPlatform = true;
-        GetComponent<Renderer>().material.color = new Color(Random.value, Random.value, Random.value);
+        _renderer.material.color = new Color(Random.value, Random.value, Random.value);
     }
 
     private void Initialize()
     {
-        GetComponent<Renderer>().material.color = _color;
+        gameObject.transform.rotation = Quaternion.identity;
+        _renderer.material.color = _inputColor;
         _isTouchPlatform = false;
         _lifeTime = Random.Range(_minLifetime, _maxLifetime + 1);
         _wait = new WaitForSecondsRealtime(_lifeTime);
@@ -57,6 +64,6 @@ public class Cube : MonoBehaviour
     {
         yield return _wait;
 
-        _spawnerWithPool.TakeCube(gameObject);
+        _spawnerWithPool.TakeCube(this);
     }
 }

@@ -146,6 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4515c9d5150843241b3529b17068b90c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {r: 0, g: 1, b: 0.96636033, a: 0}
+  _inputColor: {r: 0, g: 0.9903989, b: 1, a: 0}
   _minLifetime: 2
   _maxLifetime: 5
