@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Renderer))]
 
@@ -13,57 +14,43 @@ public class Cube : MonoBehaviour
     private bool _isTouchPlatform;
     private int _lifeTime;
     private WaitForSecondsRealtime _wait;
-    private Spawner _spawnerWithPool;
 
-    public bool IsTouchPlatform => _isTouchPlatform;
-
-    public void Reset()
-    {
-        Start();
-    }
+    public event UnityAction<Cube> ReadyComeBack;
 
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
     }
 
-    private void Start()
+    private void OnCollisionEnter()
     {
-        Initialize();
-    }
-
-    private void Update()
-    {
-        if (_isTouchPlatform)
+        if (_isTouchPlatform == false)
         {
+            ChangeColor();
             StartCoroutine(CountdownLifeTime());
         }
     }
 
-    public void SetSpawner(Spawner spawner)
+    public void Initialize(Vector3 position)
     {
-        _spawnerWithPool = spawner;
-    }
-
-    public void ChangeColor()
-    {
-        _isTouchPlatform = true;
-        _renderer.material.color = new Color(Random.value, Random.value, Random.value);
-    }
-
-    private void Initialize()
-    {
-        gameObject.transform.rotation = Quaternion.identity;
+        transform.position = position;
+        transform.rotation = Quaternion.identity;
         _renderer.material.color = _inputColor;
         _isTouchPlatform = false;
         _lifeTime = Random.Range(_minLifetime, _maxLifetime + 1);
         _wait = new WaitForSecondsRealtime(_lifeTime);
     }
 
+    private void ChangeColor()
+    {
+        _isTouchPlatform = true;
+        _renderer.material.color = new Color(Random.value, Random.value, Random.value);
+    }
+
     private IEnumerator CountdownLifeTime()
     {
         yield return _wait;
 
-        _spawnerWithPool.TakeCube(this);
+        ReadyComeBack?.Invoke(this);
     }
 }

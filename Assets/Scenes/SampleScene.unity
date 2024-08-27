@@ -189,7 +189,6 @@ GameObject:
   - component: {fileID: 672155293}
   - component: {fileID: 672155292}
   - component: {fileID: 672155291}
-  - component: {fileID: 672155294}
   m_Layer: 0
   m_Name: Slope1
   m_TagString: Untagged
@@ -284,18 +283,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672155289}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &672155294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672155289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604c5db6180ce2e4ba109159ce8420e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,7 +643,6 @@ GameObject:
   - component: {fileID: 1010306785}
   - component: {fileID: 1010306784}
   - component: {fileID: 1010306783}
-  - component: {fileID: 1010306786}
   m_Layer: 0
   m_Name: Slope3
   m_TagString: Untagged
@@ -751,18 +737,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010306781}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1010306786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1010306781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604c5db6180ce2e4ba109159ce8420e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1032751828
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +749,6 @@ GameObject:
   - component: {fileID: 1032751831}
   - component: {fileID: 1032751830}
   - component: {fileID: 1032751834}
-  - component: {fileID: 1032751833}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -848,18 +821,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1344799656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1032751833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1032751828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604c5db6180ce2e4ba109159ce8420e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &1032751834
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -926,7 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3160c2954b4fc4ba37502c27b848df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabCube: {fileID: 3275910379497876995, guid: 3db97e360f2fb5949ab533c3916b6b9e, type: 3}
+  _prefabCube: {fileID: -9222156540318885964, guid: 3db97e360f2fb5949ab533c3916b6b9e, type: 3}
   _minForPointSpawn: -4
   _maxForPointSpawn: 4
   _poolCapacity: 1
@@ -1047,7 +1008,6 @@ GameObject:
   - component: {fileID: 1608963203}
   - component: {fileID: 1608963202}
   - component: {fileID: 1608963201}
-  - component: {fileID: 1608963204}
   m_Layer: 0
   m_Name: Slope4
   m_TagString: Untagged
@@ -1142,18 +1102,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608963199}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1608963204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1608963199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604c5db6180ce2e4ba109159ce8420e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1743427960
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,7 +1114,6 @@ GameObject:
   - component: {fileID: 1743427964}
   - component: {fileID: 1743427963}
   - component: {fileID: 1743427962}
-  - component: {fileID: 1743427965}
   m_Layer: 0
   m_Name: Slope2
   m_TagString: Untagged
@@ -1261,18 +1208,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743427960}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1743427965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743427960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604c5db6180ce2e4ba109159ce8420e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

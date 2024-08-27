@@ -44,28 +44,28 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public void TakeCube(Cube cube)
-    {
-        _poolCubes.Release(cube);
-    }
-
     private Cube CreateCubeForPool()
     {
         Cube cube = Instantiate(_prefabCube);
-        cube.SetSpawner(this);
         return cube;
     }
 
     private void GetFromPool(Cube cube)
     {
-        cube.transform.position = GetPointSpawn();
+        cube.Initialize(GetPointSpawn());
         cube.gameObject.SetActive(true);
+        cube.ReadyComeBack += TakeCube;
     }
 
     private void ReleaseInPool(Cube cube)
     {
-        cube.Reset();
         cube.gameObject.SetActive(false);
+        cube.ReadyComeBack -= TakeCube;
+    }
+
+    private void TakeCube(Cube cube)
+    {
+        _poolCubes.Release(cube);
     }
 
     private Vector3 GetPointSpawn()
