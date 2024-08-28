@@ -1,9 +1,7 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(Renderer), typeof(Rigidbody))]
-
 public class Cube : MonoBehaviour
 {
     [SerializeField] private Color _inputColor;
@@ -16,7 +14,7 @@ public class Cube : MonoBehaviour
     private int _lifeTime;
     private WaitForSecondsRealtime _wait;
 
-    public event UnityAction<Cube> ReadyComeBack;
+    public event System.Action<Cube> LifeTimeFinished;
 
     private void Awake()
     {
@@ -25,14 +23,11 @@ public class Cube : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Platform>() == false)
-            return;
-
-        if (_isTouchPlatform)
-            return;
-
-        ChangeColor();
-        StartCoroutine(CountdownLifeTime());
+        if (_isTouchPlatform == false && collision.gameObject.GetComponent<Platform>())
+        {
+            ChangeColor();
+            StartCoroutine(CountdownLifeTime());
+        }
     }
 
     public void Initialize(Vector3 position)
@@ -62,6 +57,6 @@ public class Cube : MonoBehaviour
     {
         yield return _wait;
 
-        ReadyComeBack?.Invoke(this);
+        LifeTimeFinished?.Invoke(this);
     }
 }

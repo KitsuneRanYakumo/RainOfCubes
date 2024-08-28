@@ -28,8 +28,8 @@ public class Spawner : MonoBehaviour
     {
         _poolCubes = new ObjectPool<Cube>(
             createFunc: CreateCubeForPool,
-            actionOnGet: GetFromPool,
-            actionOnRelease: ReleaseInPool,
+            actionOnGet: OnGetFromPool,
+            actionOnRelease: OnReleaseInPool,
             actionOnDestroy: Destroy,
             collectionCheck: true,
             defaultCapacity: _poolCapacity,
@@ -49,17 +49,17 @@ public class Spawner : MonoBehaviour
         return Instantiate(_prefabCube);
     }
 
-    private void GetFromPool(Cube cube)
+    private void OnGetFromPool(Cube cube)
     {
-        cube.Initialize(GetPointSpawn());
+        cube.Initialize(GeneratePointSpawn());
         cube.gameObject.SetActive(true);
-        cube.ReadyComeBack += TakeCube;
+        cube.LifeTimeFinished += TakeCube;
     }
 
-    private void ReleaseInPool(Cube cube)
+    private void OnReleaseInPool(Cube cube)
     {
         cube.gameObject.SetActive(false);
-        cube.ReadyComeBack -= TakeCube;
+        cube.LifeTimeFinished -= TakeCube;
     }
 
     private void TakeCube(Cube cube)
@@ -67,7 +67,7 @@ public class Spawner : MonoBehaviour
         _poolCubes.Release(cube);
     }
 
-    private Vector3 GetPointSpawn()
+    private Vector3 GeneratePointSpawn()
     {
         Vector3 positionSpawner = transform.position;
 
