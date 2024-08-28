@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Renderer))]
+[RequireComponent(typeof(Renderer), typeof(Rigidbody))]
 
 public class Cube : MonoBehaviour
 {
@@ -11,6 +11,7 @@ public class Cube : MonoBehaviour
     [SerializeField] private int _maxLifetime = 5;
 
     private Renderer _renderer;
+    private Rigidbody _rigidbody;
     private bool _isTouchPlatform;
     private int _lifeTime;
     private WaitForSecondsRealtime _wait;
@@ -19,16 +20,19 @@ public class Cube : MonoBehaviour
 
     private void Awake()
     {
-        _renderer = GetComponent<Renderer>();
+        SetComponents();
     }
 
-    private void OnCollisionEnter()
+    private void OnCollisionEnter(Collision collision)
     {
-        if (_isTouchPlatform == false)
-        {
-            ChangeColor();
-            StartCoroutine(CountdownLifeTime());
-        }
+        if (collision.gameObject.GetComponent<Platform>() == false)
+            return;
+
+        if (_isTouchPlatform)
+            return;
+
+        ChangeColor();
+        StartCoroutine(CountdownLifeTime());
     }
 
     public void Initialize(Vector3 position)
@@ -36,9 +40,16 @@ public class Cube : MonoBehaviour
         transform.position = position;
         transform.rotation = Quaternion.identity;
         _renderer.material.color = _inputColor;
+        _rigidbody.velocity = Vector3.zero;
         _isTouchPlatform = false;
         _lifeTime = Random.Range(_minLifetime, _maxLifetime + 1);
         _wait = new WaitForSecondsRealtime(_lifeTime);
+    }
+
+    private void SetComponents()
+    {
+        _renderer = GetComponent<Renderer>();
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     private void ChangeColor()

@@ -11,6 +11,19 @@ public class Spawner : MonoBehaviour
 
     private ObjectPool<Cube> _poolCubes;
 
+    private void OnValidate()
+    {
+        if (_minForPointSpawn > _maxForPointSpawn)
+        {
+            _minForPointSpawn = _maxForPointSpawn;
+        }
+
+        if (_poolCapacity > _poolMaxSize)
+        {
+            _poolCapacity = _poolMaxSize;
+        }
+    }
+
     private void Awake()
     {
         _poolCubes = new ObjectPool<Cube>(
@@ -31,23 +44,9 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void OnValidate()
-    {
-        if (_minForPointSpawn > _maxForPointSpawn)
-        {
-            _minForPointSpawn = _maxForPointSpawn;
-        }
-
-        if (_poolCapacity > _poolMaxSize)
-        {
-            _poolCapacity = _poolMaxSize;
-        }
-    }
-
     private Cube CreateCubeForPool()
     {
-        Cube cube = Instantiate(_prefabCube);
-        return cube;
+        return Instantiate(_prefabCube);
     }
 
     private void GetFromPool(Cube cube)
