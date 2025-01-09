@@ -17,6 +17,6 @@ public class Platform : MonoBehaviour
 
     private void GenerateColor()
     {
-        _renderer.material.color = new Color(Random.value, Random.value, Random.value);
+        _renderer.material.color = Random.ColorHSV();
     }
 }

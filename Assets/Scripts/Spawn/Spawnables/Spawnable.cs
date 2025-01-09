@@ -6,13 +6,13 @@ public abstract class Spawnable : MonoBehaviour
 {
     [SerializeField] private int _minLifetime = 2;
     [SerializeField] private int _maxLifetime = 5;
-    [SerializeField] private Color _inputColor;
+    [SerializeField] private Color _colorModel;
 
     protected Renderer Renderer;
     protected float LifeTime;
+    protected WaitForSecondsRealtime Wait;
 
     private Rigidbody _rigidbody;
-    private WaitForSecondsRealtime _wait;
 
     public event System.Action<Spawnable> LifeTimeFinished;
 
@@ -20,10 +20,10 @@ public abstract class Spawnable : MonoBehaviour
     {
         transform.position = position;
         transform.rotation = Quaternion.identity;
-        Renderer.material.color = _inputColor;
+        Renderer.material.color = _colorModel;
         LifeTime = Random.Range(_minLifetime, _maxLifetime + 1);
         _rigidbody.velocity = Vector3.zero;
-        _wait = new WaitForSecondsRealtime(LifeTime);
+        Wait = new WaitForSecondsRealtime(LifeTime);
     }
 
     private void Awake()
@@ -32,11 +32,7 @@ public abstract class Spawnable : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    protected virtual IEnumerator StartCountdownLifeTime()
-    {
-        yield return _wait;
-        LifeTimeFinished?.Invoke(this);
-    }
+    protected abstract IEnumerator StartCountdownLifeTime();
 
     protected void OnLifeTimeFinished()
     {

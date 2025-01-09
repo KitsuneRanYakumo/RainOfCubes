@@ -2272,11 +2272,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf42deb9535c7b14fb6708910b714636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabSpawnable: {fileID: -9222156540318885964, guid: 3db97e360f2fb5949ab533c3916b6b9e, type: 3}
+  PoolMaxSize: 10
   _poolCapacity: 1
-  _poolMaxSize: 1000
-  _minForPointSpawn: -9
-  _maxForPointSpawn: 9
+  _prefabSpawnable: {fileID: -9222156540318885964, guid: 3db97e360f2fb5949ab533c3916b6b9e, type: 3}
+  _spawnerBombs: {fileID: 1951781182}
+  _spawnRadius: 5
 --- !u!1 &1234510771
 GameObject:
   m_ObjectHideFlags: 0
@@ -3569,10 +3569,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7977bf5d402d2e843a051b756dbf2369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabSpawnable: {fileID: 4648811516815280958, guid: 3846552ee08e75a468c71822dbe4b30e, type: 3}
+  PoolMaxSize: 1
   _poolCapacity: 1
-  _poolMaxSize: 10
-  _spawner: {fileID: 1094462155}
+  _prefabSpawnable: {fileID: 4648811516815280958, guid: 3846552ee08e75a468c71822dbe4b30e, type: 3}
 --- !u!4 &1951781183
 Transform:
   m_ObjectHideFlags: 0

@@ -148,6 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minLifetime: 2
   _maxLifetime: 5
-  _inputColor: {r: 0, g: 0, b: 0, a: 0}
+  _colorModel: {r: 0, g: 0, b: 0, a: 1}
   _radiusExplosion: 5
   _forceExplosion: 500

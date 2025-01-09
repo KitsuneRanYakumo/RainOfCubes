@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Cube : Spawnable
@@ -17,6 +18,12 @@ public class Cube : Spawnable
             ChangeColor();
             StartCoroutine(StartCountdownLifeTime());
         }
+    }
+
+    protected override IEnumerator StartCountdownLifeTime()
+    {
+        yield return Wait;
+        OnLifeTimeFinished();
     }
 
     private void ChangeColor()

@@ -6,10 +6,14 @@ public struct InfoAboutAmountObjects
 
     public int AmountSpawned { get; private set; }
 
-    public void SetInfo(int active, int created, int spawned)
+    public void SetInfo(int active, int created)
     {
         AmountActive = active;
         AmountCreated = created;
-        AmountSpawned = spawned;
+    }
+
+    public void IncreaseAmountSpawned()
+    {
+        ++AmountSpawned;
     }
 }
